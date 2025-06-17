@@ -1,49 +1,22 @@
 import React from 'react'
 import { ThemeProvider } from 'next-themes'
 import { motion, AnimatePresence } from 'framer-motion'
-<<<<<<< HEAD
-=======
 import Header from './components/Header'
->>>>>>> update-contact-page
 import Hero from './components/Hero'
 import About from './components/About'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
-<<<<<<< HEAD
-import Contact from './components/Contact'
-=======
 import Stats from './components/Stats'
 import Testimonials from './components/Testimonials'
 import Newsletter from './components/Newsletter'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
->>>>>>> update-contact-page
 import ThemeToggle from './components/ThemeToggle'
 
 function App() {
   return (
     <ThemeProvider attribute="class">
-<<<<<<< HEAD
-      <main className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-        <ThemeToggle />
-        <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Hero />
-            <About />
-            <Experience />
-            <Skills />
-            <Projects />
-            <Contact />
-          </motion.div>
-        </AnimatePresence>
-      </main>
-=======
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50 dark:from-gray-900 dark:via-gray-800 dark:to-primary-900/20 transition-all duration-300">
         <Header />
         <main className="pt-16 relative">
@@ -81,7 +54,6 @@ function App() {
         </main>
         <Footer />
       </div>
->>>>>>> update-contact-page
     </ThemeProvider>
   )
 }

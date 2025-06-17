@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
->>>>>>> update-contact-page
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,33 +14,22 @@
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
-<<<<<<< HEAD
-    @apply transition-colors duration-200;
-=======
     @apply transition-colors duration-200 font-sans antialiased;
->>>>>>> update-contact-page
   }
 
   /* Dark mode styles */
   .dark {
     color-scheme: dark;
   }
-<<<<<<< HEAD
-=======
   
   ::selection {
     @apply bg-primary-200 text-primary-900 dark:bg-primary-800 dark:text-primary-100;
   }
->>>>>>> update-contact-page
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-<<<<<<< HEAD
-  width: 8px;
-=======
   @apply w-2;
->>>>>>> update-contact-page
 }
 
 ::-webkit-scrollbar-track {
@@ -51,19 +37,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-<<<<<<< HEAD
-  @apply bg-gray-400 dark:bg-gray-600 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-500 dark:bg-gray-500;
-=======
   @apply bg-gray-300 dark:bg-gray-600 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-400 dark:bg-gray-500;
->>>>>>> update-contact-page
 }
 
 /* Smooth transitions for dark mode */
@@ -99,10 +77,6 @@
     @apply text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-800;
   }
   
-<<<<<<< HEAD
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
-=======
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
   }
@@ -204,6 +178,5 @@
   
   .text-shadow-lg {
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
->>>>>>> update-contact-page
   }
 }
