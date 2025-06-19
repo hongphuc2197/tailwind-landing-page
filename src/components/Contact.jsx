@@ -1,10 +1,99 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { 
+  CheckCircleIcon,
+  ExclamationCircleIcon,
+  PaperAirplaneIcon
+} from '@heroicons/react/24/outline';
 
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [statusMessage, setStatusMessage] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic here
+    setStatus('loading');
+    setStatusMessage('Sending message...');
+
+    try {
+      await fetch('https://script.google.com/macros/s/AKfycbyDREzvfiqk3oQasApvkjzO8HuGTI0d5gGVWnYMlhQECdzdzZQ5g5Yl4qSM_3UHDdT_/exec', {
+        method: 'POST',
+        mode: 'no-cors', // Important for Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          timestamp: new Date().toISOString()
+        })
+      });
+
+      // Since we're using no-cors, we can't read the response
+      // We'll assume success if no error is thrown
+      setStatus('success');
+      setStatusMessage('Message sent successfully! I\'ll get back to you soon.');
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+
+      // Reset status after 5 seconds
+      setTimeout(() => {
+        setStatus('idle');
+        setStatusMessage('');
+      }, 5000);
+
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setStatus('error');
+      setStatusMessage('Failed to send message. Please try again or contact me directly.');
+      
+      // Reset status after 5 seconds
+      setTimeout(() => {
+        setStatus('idle');
+        setStatusMessage('');
+      }, 5000);
+    }
+  };
+
+  const getStatusIcon = () => {
+    switch (status) {
+      case 'success':
+        return <CheckCircleIcon className="w-5 h-5 text-green-500" />;
+      case 'error':
+        return <ExclamationCircleIcon className="w-5 h-5 text-red-500" />;
+      default:
+        return null;
+    }
+  };
+
+  const getStatusColor = () => {
+    switch (status) {
+      case 'success':
+        return 'text-green-600 dark:text-green-400';
+      case 'error':
+        return 'text-red-600 dark:text-red-400';
+      default:
+        return 'text-gray-600 dark:text-gray-400';
+    }
   };
 
   const containerVariants = {
@@ -59,6 +148,8 @@ const Contact = () => {
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary-600 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                   placeholder="Your name"
                   required
+                  value={formData.name}
+                  onChange={handleChange}
                 />
               </motion.div>
               <motion.div variants={itemVariants}>
@@ -72,6 +163,8 @@ const Contact = () => {
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary-600 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                   placeholder="your@email.com"
                   required
+                  value={formData.email}
+                  onChange={handleChange}
                 />
               </motion.div>
               <motion.div variants={itemVariants}>
@@ -85,6 +178,8 @@ const Contact = () => {
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary-600 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                   placeholder="Your message"
                   required
+                  value={formData.message}
+                  onChange={handleChange}
                 ></textarea>
               </motion.div>
               <motion.button
@@ -92,10 +187,34 @@ const Contact = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full bg-primary-600 hover:bg-primary-700 text-white py-3 px-6 rounded-lg font-medium transition duration-300"
+                disabled={status === 'loading'}
+                className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white py-3 px-6 rounded-lg font-medium transition duration-300 flex items-center justify-center space-x-2"
               >
-                Send Message
+                {status === 'loading' ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <PaperAirplaneIcon className="w-5 h-5" />
+                    <span>Send Message</span>
+                  </>
+                )}
               </motion.button>
+
+              {/* Status Message */}
+              {status !== 'idle' && statusMessage && (
+                <motion.div 
+                  className={`text-sm font-medium ${getStatusColor()} flex items-center justify-center space-x-2`}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {getStatusIcon()}
+                  <span>{statusMessage}</span>
+                </motion.div>
+              )}
             </form>
           </motion.div>
           <motion.div
