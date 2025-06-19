@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Experience = () => {
   const projects = [
@@ -45,54 +46,112 @@ const Experience = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3
+      }
+    }
+  };
+
+  const projectVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
+  const techStackVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
   return (
-    <section id="experience" className="py-20 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+    <section id="experience" className="py-20 bg-white dark:bg-gray-900 transition-colors duration-200">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <motion.h2
+          variants={projectVariants}
+          className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12"
+        >
           Featured Projects
-        </h2>
-        <div className="space-y-8">
+        </motion.h2>
+        <motion.div variants={containerVariants} className="space-y-8">
           {projects.map((project, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-gray-50 rounded-xl p-6 md:p-8 shadow-md hover:shadow-lg transition duration-300"
+              variants={projectVariants}
+              className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 md:p-8 shadow-md hover:shadow-lg transition duration-300"
             >
               <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900">{project.title}</h3>
-                  <p className="text-blue-600">{project.company}</p>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    {project.title}
+                  </h3>
+                  <p className="text-primary-600 dark:text-primary-400">{project.company}</p>
                 </div>
                 <div className="mt-2 md:mt-0 text-right">
-                  <span className="text-gray-500">{project.period}</span>
-                  <p className="text-sm text-gray-500">Team Size: {project.teamSize}</p>
+                  <span className="text-gray-500 dark:text-gray-400">{project.period}</span>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Team Size: {project.teamSize}</p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">{project.description}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
               <div className="mb-4">
-                <h4 className="text-sm font-semibold text-gray-700 mb-2">Tech Stack:</h4>
-                <div className="flex flex-wrap gap-2">
+                <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Tech Stack:
+                </h4>
+                <motion.div
+                  variants={containerVariants}
+                  className="flex flex-wrap gap-2"
+                >
                   {project.techStack.map((tech, idx) => (
-                    <span
+                    <motion.span
                       key={idx}
-                      className="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm"
+                      variants={techStackVariants}
+                      whileHover={{ scale: 1.05 }}
+                      className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-3 py-1 rounded-full text-sm"
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
-                </div>
+                </motion.div>
               </div>
               <div>
-                <h4 className="text-sm font-semibold text-gray-700 mb-2">Key Responsibilities:</h4>
-                <ul className="list-disc list-inside space-y-1 text-gray-600">
+                <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  Key Responsibilities:
+                </h4>
+                <ul className="list-disc list-inside space-y-1 text-gray-600 dark:text-gray-400">
                   {project.responsibilities.map((item, idx) => (
-                    <li key={idx}>{item}</li>
+                    <motion.li
+                      key={idx}
+                      variants={projectVariants}
+                      custom={idx}
+                    >
+                      {item}
+                    </motion.li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
