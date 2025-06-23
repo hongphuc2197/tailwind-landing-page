@@ -1,4 +1,8 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
+import { motion } from 'framer-motion';
+>>>>>>> update-contact-page
 
 const Skills = () => {
   const skillCategories = [
@@ -35,6 +39,7 @@ const Skills = () => {
     }
   ];
 
+<<<<<<< HEAD
   return (
     <section id="skills" className="py-20 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,6 +66,86 @@ const Skills = () => {
           ))}
         </div>
       </div>
+=======
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
+  const skillVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  return (
+    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-200">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <motion.h2
+          variants={itemVariants}
+          className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12"
+        >
+          Technical Expertise
+        </motion.h2>
+        <motion.div
+          variants={containerVariants}
+          className="grid md:grid-cols-2 gap-8"
+        >
+          {skillCategories.map((category, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 md:p-8"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+                {category.title}
+              </h3>
+              <motion.div
+                variants={containerVariants}
+                className="flex flex-wrap gap-3"
+              >
+                {category.skills.map((skill, idx) => (
+                  <motion.span
+                    key={idx}
+                    variants={skillVariants}
+                    whileHover={{ scale: 1.05 }}
+                    className="bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 px-4 py-2 rounded-full text-sm font-medium"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+>>>>>>> update-contact-page
     </section>
   );
 };

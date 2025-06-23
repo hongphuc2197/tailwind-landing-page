@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+>>>>>>> update-contact-page
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,18 +17,33 @@
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
+<<<<<<< HEAD
     @apply transition-colors duration-200;
+=======
+    @apply transition-colors duration-200 font-sans antialiased;
+>>>>>>> update-contact-page
   }
 
   /* Dark mode styles */
   .dark {
     color-scheme: dark;
   }
+<<<<<<< HEAD
+=======
+  
+  ::selection {
+    @apply bg-primary-200 text-primary-900 dark:bg-primary-800 dark:text-primary-100;
+  }
+>>>>>>> update-contact-page
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
+<<<<<<< HEAD
   width: 8px;
+=======
+  @apply w-2;
+>>>>>>> update-contact-page
 }
 
 ::-webkit-scrollbar-track {
@@ -30,11 +51,19 @@
 }
 
 ::-webkit-scrollbar-thumb {
+<<<<<<< HEAD
   @apply bg-gray-400 dark:bg-gray-600 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-500 dark:bg-gray-500;
+=======
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+>>>>>>> update-contact-page
 }
 
 /* Smooth transitions for dark mode */
@@ -70,7 +99,111 @@
     @apply text-3xl sm:text-4xl font-bold text-center mb-12 text-gray-800;
   }
   
+<<<<<<< HEAD
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600;
+=======
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 shadow-soft hover:shadow-medium;
+  }
+  
+  .btn-secondary {
+    @apply btn bg-secondary-100 text-secondary-900 hover:bg-secondary-200 focus:ring-secondary-500 dark:bg-secondary-800 dark:text-secondary-100 dark:hover:bg-secondary-700;
+  }
+  
+  .btn-outline {
+    @apply btn border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white focus:ring-primary-500 dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-400 dark:hover:text-primary-900;
+  }
+  
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-soft hover:shadow-medium transition-all duration-300 border border-gray-200 dark:border-gray-700;
+  }
+  
+  .card-hover {
+    @apply card hover:scale-105 hover:shadow-large;
+  }
+  
+  .input {
+    @apply w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:focus:ring-primary-400 dark:focus:border-primary-400 transition-colors duration-200;
+  }
+  
+  .textarea {
+    @apply input resize-none;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  
+  .badge-primary {
+    @apply badge bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200;
+  }
+  
+  .badge-secondary {
+    @apply badge bg-secondary-100 text-secondary-800 dark:bg-secondary-900 dark:text-secondary-200;
+  }
+  
+  .badge-accent {
+    @apply badge bg-accent-100 text-accent-800 dark:bg-accent-900 dark:text-accent-200;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent;
+  }
+  
+  .glass {
+    @apply bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-white/20 dark:border-gray-800/20;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  .animate-delay-500 {
+    animation-delay: 500ms;
+  }
+  
+  .animate-delay-700 {
+    animation-delay: 700ms;
+  }
+  
+  .animate-delay-1000 {
+    animation-delay: 1000ms;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+>>>>>>> update-contact-page
   }
 }
